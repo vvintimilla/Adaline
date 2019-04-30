@@ -1,0 +1,82 @@
+RED ADALINE
+
+Introducción
+
+Las redes ADALINE (ADAptive LInear NEuron networks, ADAptive LINear Element) fueron desarrolladas en 1959 por Bernie Widrow poco después de que Rosenblatt desarrollara el Perceptrón.
+
+
+Red Adaline
+
+Esta neurona es similar al Perceptrón simple, pero utiliza como función de transferencia la función identidad en lugar de la función signo. La salida de la ADALINE es simplemente una función lineal de las entradas (ponderadas con los pesos sinápticos):
+
+Utiliza un aprendizaje off-line con supervisión denominado LMS o regla del mínimo error cuadrático medio, también denominado regla delta.
+Tiene una gran diferencia con el Perceptrón, la manera de utilizar la salida en la regla de aprendizaje, el Perceptrón utiliza la salida de la función umbral (binaria) para el aprendizaje. Solo se tiene en cuenta si se ha equivocado o no.
+
+ 
+
+En Adaline se utiliza directamente la salida de la red (real) teniendo en cuenta cuánto se ha equivocado.
+Estructura de la red ADALINE
+
+ 
+
+La salida de la red está dada por:
+	a = purelin(Wp + b) =Wp + b	
+Para una red Adaline de una sola neurona con dos entradas la representación es la siguiente:
+
+ 
+Adaline de una neurona y dos entradas
+En similitud con el Perceptrón, el límite de la característica de decisión para la red Adaline se presenta cuando n = 0, por lo tanto:
+	wT p + b = 0	
+Específica la línea que separa en dos regiones el espacio de entrada, como se muestra en la siguiente gráfica:
+ 
+Característica de decisión de una red tipo Adaline
+La salida de la neurona es mayor que cero en el área gris, en el área blanca la salida es menor que cero.  Como se mencionó anteriormente, la red Adaline puede clasificar correctamente patrones linealmente separables en dos categorías.
+
+Algoritmo de entrenamiento
+
+Adaline utiliza la regla Delta, y que se define, para un patrón de entrada x^p con una salida estimada y^p y una salida deseada d^p , como  d^p- y^p.
+
+En donde define el error mediante la ecuación:
+
+ 
+La manera de reducir este error global es ir modificando los valores de los pesos al procesar cada entrada, 
+∂E/(∂W_j )=∂E/∂y*  ∂y/(∂W_j )=-(d-y)*x_j
+
+En donde se puede calcular el valor de la derivada respecto a cada peso:
+
+W_j=W_j-γ* ∆W_j= W_j-γ*∂E/(∂W_j )
+
+Y la modificación de los pesos quedaría dado por la expresión:
+
+∆W_j= γ*(d-y)*x_j
+
+El Algoritmo LMS o Regla Delta, logra minimizar el error cuadrático medio, desplazando las fronteras de decisión lejos de los patrones de entrenamiento.
+
+Funcionamiento del algoritmo de aprendizaje
+1.- Asigna valores aleatorios a los pesos W_i
+2.- Aplica un vector de entrada para obtener una salida correspondiente:
+a=pureline(W_p+b)= W_p+b
+Y realiza el cálculo del error mediante:  e= t_i-a
+3.-  Se actualizan los pesos: 
+W^nuevo= W^anterior+2aep^t
+b^nuevo= b^anterior+2ae
+4.- Repetimos los pasos del 1 al 3 con todos los vectores de entrada.
+5.- Dependiendo de los resultados que se hubieren obtenido, se decide si se termina o se retorna al segundo paso.
+
+Aplicaciones de la red ADALINE
+La red Adaline tiene varias aplicaciones, entre ellas están: 
+
+	Asociación de patrones: se puede aplicar a este tipo de problemas siempre que los patrones sean linealmente separables.
+	Procesamiento de señales:
+	Filtros de ruido: Limpiar ruido de señales transmisoras de información.
+	Filtros adaptativos: Un Adaline es capaz de predecir el valor de una señal en el instante t+1 si se conoce el valor de la misma en los p instantes anteriores (p es >0 y su valor depende del problema). El error de la predicción será mayor o menor según qué señal queramos predecir. Si la señal se corresponde a una serie temporal el Adaline, pasado un tiempo, será capaz de dar predicciones exactas.
+
+Bibliografía:
+
+https://www.emaze.com/@AQROWILW
+https://books.google.com.ec/books?id=X0uLwi1Ap4QC&lpg=PA48&ots=gNMBhsksXg&dq=aplicaciones%20de%20adaline&pg=PA48#v=onepage&q=aplicaciones%20de%20adaline&f=false
+https://prezi.com/j82sylwvm0a5/redes-adaline/
+http://medicinaycomplejidad.org/pdf/redes/Adaline.pdf
+http://dspace.uazuay.edu.ec/bitstream/datos/2306/1/06831.pdf
+http://www.lcc.uma.es/~jmortiz/archivos/Tema5.pdf
+
